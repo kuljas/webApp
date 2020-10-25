@@ -1,0 +1,39 @@
+{% extends 'users/main.html' %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-md">
+    <div class="card card-body">
+      <h5>Predmeti</h5>
+    </div>
+    <div class="card card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Ime</th>
+            <th>Kategorija</th>
+            <th>Pocetna cena</th>
+            <th>Traje do</th>
+            <th>Daj ponudu</th>
+          </tr>
+          {% for i in predmeti%}
+            <tr>
+              <td>{{i.ime}}</td>
+              <td>{{i.kategorija}}</td>
+              <td>{{i.pocetna_cena}}</td>
+              <td>{{i.trajanje_aukcije}}</td>
+              <td><form method="POST" action="">
+                  {% csrf_token %}
+                    <input type="number" name="ponuda+{{i.id}}" placeholder="Iznos..." min="{{i.pocetna_cena}}" step=0.1 class="form"><input type="submit" value="Biduj" class="btn btn-primary"></input>
+                  </form>
+              </td>
+              <!--<td><a href="">Biduj</a></td>-->
+            </tr>
+          {% endfor %} 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock%}

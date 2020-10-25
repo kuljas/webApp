@@ -1,0 +1,118 @@
+{% extends 'users/main.html' %}
+
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Nalog</h5>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="">Izmeni nalog</a>
+            <a class="btn btn-outline-info btn-sm btn-block" href="">Obrisi nalog</a>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Informacije o nalogu</h5>
+            <hr>
+            <p>Username: <b>{{korisnik.username}}</b></p>
+            <p>Email: <b>{{korisnik.email}}</b></p>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Ukupno oglasa</h5>
+            <hr>
+            <p>Bidovanih:</p>
+            <p>Mojih:</p>
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card card_body">
+            <form method="get">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card card_body">
+            <h2>Moji oglasi</h2>
+            {% if not oglaseni_predmeti %}
+            <h2> nemate oglasa </h2>
+            {% endif %}
+            {% if oglaseni_predmeti %}
+            <table class="table table-sm">
+                <tr>
+                    <th>Predmet</th>
+                    <th>Datum isteka</th>
+                    <th>Pocetna cena</th>
+                    <th>Broj ponuda</th>
+                    <th>Najveca ponuda</th>
+                    <th>Izmeni</th>
+                    <th>Obrisi</th>
+                </tr>
+                {% for predmet in oglaseni_predmeti %}
+                    <tr>
+                        <td>{{ predmet.ime }}</td>
+                        <td>{{ predmet.trajanje_aukcije }}</td>
+                        <td>{{ predmet.pocetna_cena }}</td>
+                        <td>{{ predmet.br_ponuda }}</td>
+                        <td>{{ predmet.max_ponuda }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card card_body">
+            <h2>Moje ponude</h2>
+            <table class="table table-sm">
+                <tr>
+                    <th>Predmet</th>
+                    <th>Datum isteka</th>
+                    <th>Pocetna cena</th>
+                    <th>Broj ponuda</th>
+                    <th>Moja ponuda</th>
+                    <th>Obrisi</th>
+                </tr>
+            
+            
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock%}
